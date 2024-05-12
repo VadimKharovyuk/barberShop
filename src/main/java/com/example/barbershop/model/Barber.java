@@ -28,6 +28,6 @@ public class Barber {
     @Column(name = "image")
     private String image; // Путь к изображению мастера
 
-    // Конструкторы, геттеры и сеттеры
+
 }
 

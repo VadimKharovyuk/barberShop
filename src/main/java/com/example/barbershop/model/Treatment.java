@@ -21,6 +21,5 @@ public class Treatment {
 
     private double price;
 
-    // Конструкторы, геттеры и сеттеры
 }
 
