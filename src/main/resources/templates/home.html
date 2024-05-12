@@ -1,10 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            background-color: #010206;
+            background-image:
+                    radial-gradient(at 47% 33%, hsl(228, 55%, 74%) 0, transparent 59%),
+                    radial-gradient(at 82% 65%, hsl(0, 87%, 48%) 0, transparent 55%);
+        }
+        /* Пример стилей для параллакса */
+        .parallax {
+            /* Ваш стиль для параллакса */
+            background-image: url('/pic/f19e6df2f4334b37b7f4a0dacc31cda7.jpeg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        /* Пример стилей для навигации */
+        nav {
+            /* Ваши стили для навигации */
+            text-align: center;
+            background-color: #000000; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры у списка */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline; /* Выводим элементы в одну линию */
+            margin-right: 20px; /* Внешний отступ между элементами */
+        }
+
+        nav ul li a {
+            color: white; /* Цвет ссылок */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            font-weight: bold; /* Жирный шрифт */
+        }
+
+        /* Пример стилей для секций */
+        section {
+            /* Ваши стили для секций */
+            padding: 20px;
+        }
+
+        section h2 {
+            color: #eee6e6; /* Цвет заголовка */
+        }
+
+        section p {
+            color: #4ca5cb; /* Цвет текста */
+        }
+
+
+
+
+        /* Пример стилей для основного содержимого */
+        article {
+            /* Ваши стили для основного содержимого */
+        }
+
+        /* Пример стилей для подвала */
+        footer {
+            /* Ваши стили для футера */
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333; /* Цвет фона */
+            color: white; /* Цвет текста */
+            padding: 20px 0; /* Внутренние отступы */
+            text-align: center; /* Выравнивание по центру */
+        }
+    </style>
 </head>
 <body>
-$END$
+<!-- Навигация -->
+<nav>
+    <ul>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#advantages">Наши преимущества</a></li>
+        <li><a href="#">Записаться</a></li>
+    </ul>
+</nav>
+
+<!-- Хедер с параллаксом -->
+<header class="parallax">
+    <h1 class="hederH1">Добро пожаловать в наш барбер-шоп!</h1>
+    <p class="hederP">Мы создаем уникальные образы для наших клиентов</p>
+</header>
+
+<!-- Секция с услугами -->
+<section id="services">
+    <h2>Услуги</h2>
+    <p>Здесь можно описать ваши услуги и их особенности.</p>
+</section>
+
+<!-- Секция с нашими преимуществами -->
+<section id="advantages">
+    <h2>Наши преимущества</h2>
+    <p>Здесь можно описать ваши конкурентные преимущества на рынке и почему клиенты должны выбирать именно ваш барбер-шоп.</p>
+</section>
+
+
+
+
+
+<!-- Основное содержимое -->
+<article>
+    <!-- Основной контент вашей страницы -->
+</article>
+
+<!-- Подвал -->
+<footer>
+    <!-- Ваш подвал -->
+</footer>
 </body>
 </html>
