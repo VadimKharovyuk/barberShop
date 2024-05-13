@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbers List</title>
+    <style>
+        /* Стили для карточек */
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .card .details {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Список барберов</h1>
+<div class="card-list">
+    <!-- Перебор барберов из модели -->
+    <div class="card" th:each="barber : ${barbers}">
+        <img th:src="@{'/pic/' + ${barber.image}}" alt="Barber Image">
+        <div class="details">
+            <h2 th:text="${barber.name}">Имя Барбера</h2>
+            <p th:text="${barber.specialization}">Специализация: Стрижка</p>
+            <p th:text="${barber.schedule}">Расписание: Пн-Пт: 9:00-18:00, Сб-Вс: выходной</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
