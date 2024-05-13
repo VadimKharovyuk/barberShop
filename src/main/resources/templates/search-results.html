@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Результаты поиска</h1>
+<div>
+    <ul>
+        <!-- Перебор найденных услуг из модели -->
+        <li th:each="treatment : ${treatments}">
+            <p th:text="${treatment.name}">Название услуги</p>
+            <p th:text="${treatment.price}">Цена</p>
+        </li>
+        <!-- Если нет результатов поиска -->
+        <li th:if="${treatments.size() == 0}">Нет результатов поиска</li>
+    </ul>
+</div>
+</body>
+</html>
