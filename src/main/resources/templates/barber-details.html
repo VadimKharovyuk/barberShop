@@ -8,6 +8,6 @@
 <h1 th:text="${barber.name}"></h1>
 <p th:text="${barber.specialization}"></p>
 <p th:text="${barber.schedule}"></p>
-<img th:src="${barber.image}" alt="Barber Photo">
+<img th:src="@{'/pic/' + ${barber.image}}" alt="Barber Image">
 </body>
 </html>

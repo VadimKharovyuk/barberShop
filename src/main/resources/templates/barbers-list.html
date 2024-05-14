@@ -5,14 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbers List</title>
     <style>
+        body {
+            background-image: url('/pic/Default_barbershop_modern_style_3.jpg'); /* Путь к изображению */
+            background-size: cover; /* Растянуть изображение на всю область */
+            background-position: center; /* Выравнивание изображения по центру */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            height: 100vh; /* Высота равная высоте окна браузера */
+            margin: 0; /* Убрать отступы по умолчанию */
+            padding: 0; /* Убрать внутренние отступы по умолчанию */
+        }
         /* Стили для карточек */
         .card {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
             margin: 10px;
-            width: 200px;
+            width: 250px;
             display: inline-block;
+            transition: box-shadow 0.3s ease-in-out; /* Плавный переход для тени */
+        }
+
+        /* Тень и эффект hover */
+        .card:hover {
+            box-shadow: 0px 0px 30px 0px rgb(248, 245, 243); /* Тень */
         }
 
         .card img {
@@ -24,20 +39,28 @@
             text-align: center;
             margin-top: 10px;
         }
+        .mainH1{
+            text-align: center;
+            color: #eee6e6;
+        }
     </style>
 </head>
-<body>
-<h1>Список барберов</h1>
+<body style="background-image: url('/pic/Default_barbershop_modern_style_3.jpg');">
+<h1 class="mainH1">"Ваш стиль - наше искусство."</h1>
 <div class="card-list">
     <!-- Перебор барберов из модели -->
     <div class="card" th:each="barber : ${barbers}">
         <img th:src="@{'/pic/' + ${barber.image}}" alt="Barber Image">
         <div class="details">
-            <h2 th:text="${barber.name}">Имя Барбера</h2>
-            <p th:text="${barber.specialization}">Специализация: Стрижка</p>
-            <p th:text="${barber.schedule}">Расписание: Пн-Пт: 9:00-18:00, Сб-Вс: выходной</p>
+            <h2 th:text="${barber.name}" style="color: #ece5e5">Имя Барбера </h2>
+            <p th:text="${barber.specialization}" style="color: #eaf0f3">Специализация: Стрижка</p>
+            <p th:text="${barber.schedule}" style="color: #e2e8e7">Расписание: Пн-Пт: 9:00-18:00, Сб-Вс: выходной</p>
+            <!-- Ссылка на страницу барбера -->
+            <a th:href="@{'/barbers/' + ${barber.id}}" style="color: #eee6e6">Подробнее</a>
         </div>
     </div>
 </div>
+
+
 </body>
 </html>

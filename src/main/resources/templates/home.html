@@ -77,6 +77,10 @@
             padding: 20px 0; /* Внутренние отступы */
             text-align: center; /* Выравнивание по центру */
         }
+        .search{
+            color: #f1a680;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -102,12 +106,16 @@
     <p>Здесь можно описать ваши услуги и их особенности.</p>
 </section>
 
-<h1>Поиск услуги</h1>
-<form action="/search" method="get">
-    <label for="serviceName">Введите название услуги:</label>
-    <input type="text" id="serviceName" name="serviceName">
-    <button type="submit">Найти</button>
-</form>
+<div class="search">
+    <h1>Поиск услуги</h1>
+    <form action="/search" method="get">
+        <label for="serviceName">Введите название услуги:</label>
+        <input type="text" id="serviceName" name="serviceName">
+        <button type="submit">Найти</button>
+    </form>
+
+</div>
+
 
 
 

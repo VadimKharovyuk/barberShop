@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+</head>
+<body>
+<h1>Запись к барберу</h1>
+<form action="/appointments" method="post">
+    <label for="barberId">Выберите барбера:</label>
+    <select name="barberId" id="barberId">
+        <option value="">Выберите барбера</option>
+        <!-- Перебираем список барберов -->
+        <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>
+    </select>
+    <br>
+    <label for="treatmentId">Выберите услугу:</label>
+    <select name="treatmentId" id="treatmentId">
+        <option value="">Выберите услугу</option>
+        <!-- Перебираем список услуг -->
+        <option th:each="treatment : ${treatments}" th:value="${treatment.id}" th:text="${treatment.name}"></option>
+    </select>
+    <br>
+    <label for="clientId">Введите ваше имя:</label>
+    <input type="text" id="clientId" name="clientId">
+    <br>
+    <label for="email">Введите вашу почту:</label>
+    <input type="email" id="email" name="email">
+    <br>
+    <label for="phoneNumber">Введите ваш номер телефона:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber">
+    <br>
+    <label for="dateTime">Выберите время записи:</label>
+    <input type="datetime-local" id="dateTime" name="dateTime">
+    <br>
+    <button type="submit">Записаться</button>
+</form>
+</body>
+</html>

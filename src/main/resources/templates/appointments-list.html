@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments List</title>
+</head>
+<body>
+<h1>Список записей</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Барбер</th>
+        <th>Клиент</th>
+        <th>Дата и время</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Перебираем список записей -->
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.barber.name}"></td>
+        <td th:text="${appointment.client.name}"></td>
+        <td th:text="${appointment.dateTime}"></td>
+        <td>
+<!--            <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">-->
+<!--                <button type="submit">Удалить</button>-->
+<!--            </form>-->
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

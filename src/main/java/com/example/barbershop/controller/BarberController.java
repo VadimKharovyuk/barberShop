@@ -23,7 +23,7 @@ public class BarberController {
     }
 
 
-    @GetMapping("/barber/{id}")
+    @GetMapping("/barbers/{id}")
     public String showBarberDetails(@PathVariable Long id, Model model) {
         Barber barber = barberService.getBarberById(id).orElseThrow(() -> new IllegalArgumentException("Invalid barber ID"));
         model.addAttribute("barber", barber);
