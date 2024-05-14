@@ -98,7 +98,7 @@
 
         .image-gallery-item {
             flex: 1 1 25%; /* Одинаковая ширина для четырех изображений в ряду */
-            max-height: 500px; /* Максимальная высота изображения */
+            max-height: 450px; /* Максимальная высота изображения */
             position: relative;
             overflow: hidden;
         }
@@ -113,17 +113,78 @@
             transform: scale(1.2); /* Увеличение на 20% при наведении */
         }
 
+        #gallery {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+
+        #location {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px; /* Высота карты */
+            border-radius: 8px;
+        }
 
 
 
 
 
     </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
+
+
 </head>
 <body>
 <!-- Навигация -->
 <nav>
     <ul>
+        <li><a href="/">Домой</a></li>
         <li><a href="/services">Услуги</a></li>
         <li><a href="/barbers">Наши barbers</a></li>
         <li><a href="/appointments/create">Записаться </a></li>
@@ -171,41 +232,74 @@
     </div>
 </div>
 
-<!--<h2 style="text-align: center">МУЖСКАЯ КОСМЕТИКА</h2>-->
-<!--<div class="image-gallery">-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/1922____1922_Beard_B.jpeg" alt="Image 1">-->
-<!--    </div>-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/_____Morgans_136.jpg" alt="Image 2">-->
-<!--    </div>-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/Elegance_Facial_Scru.jpg" alt="Image 3">-->
-<!--    </div>-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/MAKE_IT_CLEAN.jpg" alt="Image 3">-->
-<!--    </div>-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/Preptonic.jpg" alt="Image 3">-->
-<!--    </div>-->
-<!--    <div class="image-gallery-item">-->
-<!--        <img src="/pic/service/recharge__1000.jpg" alt="Image 3">-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
-
 <!-- Основное содержимое -->
 <article>
-    <!-- Основной контент вашей страницы -->
+    <section id="gallery">
+        <h2>Интерьер </h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="/pic/45eeff89dff54e329c67bd28bc9e368d.jpeg" alt="Интерьер барбер-шопа">
+                <div class="image-overlay">
+                    <p>Интерьер барбер-шопа</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/pic/f19e6df2f4334b37b7f4a0dacc31cda7.jpeg" alt="Интерьер барбер-шопа">
+                <div class="image-overlay">
+                    <p>Интерьер барбер-шопа</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="/pic/a3fbe948b7bb427a90f0bad74325777c.jpeg" alt="Интерьер барбер-шопа">
+                <div class="image-overlay">
+                    <p>Интерьер барбер-шопа</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="/pic/e675fdb90ce74633a9a54db185e16c8c.jpeg" alt="Интерьер барбер-шопа">
+                <div class="image-overlay">
+                    <p>Интерьер барбер-шопа</p>
+                </div>
+            </div>
+
+            <!-- Добавьте другие изображения здесь -->
+        </div>
+    </section>
+
 </article>
+<section id="location">
+    <h2>Мы на карте</h2>
+    <div id="map"></div>
+</section>
+
 
 <!-- Подвал -->
 <footer style="background-color: black; position: fixed; bottom: 0; width: 100%;">
     <!-- Ваш подвал -->
     <p style="color: white;">© 2024 Ваша компания. Все права защищены.</p>
 </footer>
+<script>
+    // Функция инициализации карты
+    function initMap() {
+        // Координаты вашего барбер-шопа
+        var barberShop = {lat: 51.5074, lng: -0.1278}; // Например, координаты Лондона
+
+        // Создаем новую карту Google и центрируем ее на вашем местоположении
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15, // Масштаб карты
+            center: barberShop // Центр карты
+        });
+
+        // Создаем маркер вашего барбер-шопа на карте
+        var marker = new google.maps.Marker({
+            position: barberShop,
+            map: map,
+            title: 'Наш барбер-шоп'
+        });
+    }
+</script>
 
 
 </body>
