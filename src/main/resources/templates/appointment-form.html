@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            color: #4ca5cb;
-            font-family: Arial, sans-serif;
-            background-image: url('/pic/c8d1d8b4a9844e30949d45359771964e.jpeg');">
-        background-size: cover; /* Растянуть изображение на всю область */
+            background-image: url('/pic/Default_barbershop_modern_style_3.jpg'); /* Путь к изображению */
+            background-size: cover; /* Растянуть изображение на всю область */
             background-position: center; /* Выравнивание изображения по центру */
             background-repeat: no-repeat; /* Запретить повторение изображения */
             height: 100vh; /* Высота равная высоте окна браузера */
@@ -21,13 +19,15 @@
 
         h1 {
             text-align: center;
-            color: #ece5e5;
+            color: #eabe50;
         }
 
         form {
-            width: 50%;
+            width: 40%;
             margin: 0 auto;
+
         }
+
 
         label {
             display: block;
@@ -44,7 +44,7 @@
         }
 
         button {
-            background-color: #12daa6;
+            background-color: #f1a680;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -54,16 +54,19 @@
         }
 
         button:hover {
-            background-color: #1155e7;
+            background-color: #9ea0cb;
+        }
+        .custom-label {
+            color: #f1ecea; /* Замените "blue" на ваш выбранный цвет */
         }
 
     </style>
 </head>
-<body>
-<h1>Запись к барберу</h1>
+<body><br><br>
+<h1>Запись к барберу</h1> <br><br><br>
 <form action="/appointments" method="post">
     <!-- Добавляем выпадающий список для выбора услуги -->
-    <label for="treatmentId">Выберите услугу:</label>
+    <label class="custom-label" for="treatmentId">Выберите услугу:</label>
     <select name="treatmentId" id="treatmentId">
         <option value="">Выберите услугу</option>
         <!-- Перебираем список услуг -->
@@ -71,20 +74,20 @@
     </select>
     <br>
     <!-- Остальные поля формы -->
-    <label for="barberId">Выберите барбера:</label>
+    <label  class="custom-label" for="barberId">Выберите барбера:</label>
     <select name="barberId" id="barberId">
         <option value="">Выберите барбера</option>
         <!-- Перебираем список барберов -->
         <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>
     </select>
     <br>
-    <label for="clientName">Введите ваше имя:</label>
+    <label class="custom-label"  for="clientName">Введите ваше имя:</label>
     <input type="text" id="clientName" name="clientName">
     <br>
-    <label for="clientPhoneNumber">Введите ваш номер телефона:</label>
+    <label class="custom-label" for="clientPhoneNumber">Введите ваш номер телефона:</label>
     <input type="text" id="clientPhoneNumber" name="clientPhoneNumber">
     <br>
-    <label for="dateTime">Выберите дату и время:</label>
+    <label class="custom-label" for="dateTime">Выберите дату и время:</label>
     <input type="datetime-local" id="dateTime" name="dateTime">
     <br>
     <button type="submit">Записаться</button>
