@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги и цены</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/pic/c8d1d8b4a9844e30949d45359771964e.jpeg'); /* Путь к изображению */
+            background-size: cover; /* Растянуть изображение на всю область */
+            background-position: center; /* Выравнивание изображения по центру */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            height: 100vh; /* Высота равная высоте окна браузера */
+            margin: 0; /* Убрать отступы по умолчанию */
+            padding: 0; /* Убрать внутренние отступы по умолчанию */
+        }
+        .card {
+            color: #e7b896;
+
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            color: #4de3d2;
+            transform: scale(1.05);
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Расстояние между изображениями */
+        }
+
+        .image-gallery-item {
+            flex: 1 1 25%; /* Одинаковая ширина для четырех изображений в ряду */
+            max-height: 500px; /* Максимальная высота изображения */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease; /* Плавное изменение масштаба при наведении */
+        }
+
+        .image-gallery-item:hover img {
+            transform: scale(1.2); /* Увеличение на 20% при наведении */
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center" >Услуги</h2>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Перебор списка услуг и вывод их на страницу -->
+        <div class="col-md-4 mb-4" th:each="service : ${services}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${service.name}">Название услуги</h5>
+                    <p class="card-text" th:text="'Цена: $' + ${service.price}">Цена</p>
+                    <a th:href="@{/appointments/create}" style="color: #4ca5cb">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
