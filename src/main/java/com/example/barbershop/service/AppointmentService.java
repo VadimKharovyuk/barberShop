@@ -35,6 +35,11 @@ public class AppointmentService {
 
 
     public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime, String clientName, String clientPhoneNumber) {
+        // Проверяем, свободно ли указанное время для записи у выбранного барбера
+        if (!isAppointmentAvailable(barberId, dateTime)) {
+            throw new IllegalArgumentException("Appointment time is not available for the selected barber.");
+        }
+
         Barber barber = barberRepository.findById(barberId).orElseThrow(() -> new IllegalArgumentException("Invalid barber ID"));
         Treatment treatment = treatmentRepository.findById(treatmentId).orElseThrow(() -> new IllegalArgumentException("Invalid treatment ID"));
 
@@ -47,6 +52,12 @@ public class AppointmentService {
 
         appointmentRepository.save(appointment);
     }
+
+    private boolean isAppointmentAvailable(Long barberId, LocalDateTime dateTime) {
+        // Проверяем, есть ли уже запись для выбранного барбера в указанное время
+        return appointmentRepository.countByBarberIdAndDateTime(barberId, dateTime) == 0;
+    }
+
 
 
 

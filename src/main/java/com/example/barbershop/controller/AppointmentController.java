@@ -45,15 +45,24 @@ public class AppointmentController {
     }
 
     @PostMapping("/appointments")
-    public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime, @RequestParam String clientName, @RequestParam String clientPhoneNumber, Model model) {
-        // Создаем запись клиента
-        appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber);
-        // Здесь можно добавить логику для подтверждения записи
-        return "redirect:/"; // Перенаправляем на главную страницу
+    public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId,
+                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime,
+                                    @RequestParam String clientName, @RequestParam String clientPhoneNumber,
+                                    Model model) {
+        try {
+            appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber);
+            // Если запись успешно создана, перенаправляем на страницу успешного создания записи
+            return "redirect:/"; // Замените "success-page" на ваше представление
+        } catch (IllegalArgumentException e) {
+            // Обработка исключения
+            model.addAttribute("error", e.getMessage()); // Передача сообщения об ошибке в модель
+            return "error-page"; // Возврат страницы с сообщением об ошибке
+        }
     }
 
 
-    @PostMapping("/appointments/delete/{id}")
+
+        @PostMapping("/appointments/delete/{id}")
     public String deleteAppointment(@PathVariable Long id) {
         // Удаляем запись по ее id
         appointmentService.deleteAppointmentById(id);
