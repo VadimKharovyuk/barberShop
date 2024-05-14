@@ -4,19 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GfZXzZjy6lGUK7mezyzRkgGjaBU6UNl2Q8toHr94eJRvm/rPkS0Ut4LZBi1l+q8k" crossorigin="anonymous">
+    <style>
+        /* Custom CSS styles */
+        body {
+            background-image: url('/pic/14a0b2451f094865bf903ff836b0370b.jpeg'); /* Путь к изображению */
+            background-size: cover; /* Растянуть изображение на всю область */
+            background-position: center; /* Выравнивание изображения по центру */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            height: 100vh; /* Высота равная высоте окна браузера */
+            margin: 0; /* Убрать отступы по умолчанию */
+            padding: 0; /* Убрать внутренние отступы по умолчанию */
+        }
+
+        h1 {
+            color: #0a0a0a;
+            text-align: center;
+        }
+
+        .list-group-item {
+            background-color: #e7b896;
+            border: none;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .text-muted {
+            color: #e5e1dc;
+        }
+    </style>
 </head>
 <body>
 <h1>Результаты поиска</h1>
-<div>
-    <ul>
-        <!-- Перебор найденных услуг из модели -->
-        <li th:each="treatment : ${treatments}">
-            <p th:text="${treatment.name}">Название услуги</p>
-            <p th:text="${treatment.price}">Цена</p>
-        </li>
-        <!-- Если нет результатов поиска -->
-        <li th:if="${treatments.size() == 0}">Нет результатов поиска</li>
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                <!-- Перебор найденных услуг из модели -->
+                <li class="list-group-item" th:each="treatment : ${treatments}">
+                    <h5 class="mb-1" th:text="${treatment.name}">Название услуги</h5>
+                    <p class="mb-1" th:text="${treatment.price}">Цена</p>
+                </li>
+                <!-- Если нет результатов поиска -->
+                <li class="list-group-item text-muted" th:if="${treatments.size() == 0}">Нет результатов поиска</li>
+            </ul>
+        </div>
+    </div>
 </div>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-h5MIo50xCwIwXgLoVNS0rE92VdAdVuiKsdD6H3ws5/8L6oymjF45Trn5U1Z6vHuM" crossorigin="anonymous"></script>
 </body>
 </html>
