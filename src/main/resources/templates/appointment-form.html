@@ -1,35 +1,4 @@
 
-
-
-<!--<form action="/appointments" method="post">-->
-<!--    &lt;!&ndash; Добавляем выпадающий список для выбора услуги &ndash;&gt;-->
-<!--    <label for="treatmentId">Выберите услугу:</label>-->
-<!--    <select name="treatmentId" id="treatmentId">-->
-<!--        <option value="">Выберите услугу</option>-->
-<!--        &lt;!&ndash; Перебираем список услуг &ndash;&gt;-->
-<!--        <option th:each="treatment : ${treatments}" th:value="${treatment.id}" th:text="${treatment.name}"></option>-->
-<!--    </select>-->
-<!--    <br>-->
-<!--    &lt;!&ndash; Остальные поля формы &ndash;&gt;-->
-<!--    <label for="barberId">Выберите барбера:</label>-->
-<!--    <select name="barberId" id="barberId">-->
-<!--        <option value="">Выберите барбера</option>-->
-<!--        &lt;!&ndash; Перебираем список барберов &ndash;&gt;-->
-<!--        <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>-->
-<!--    </select>-->
-<!--    <br>-->
-<!--    <label for="clientName">Введите ваше имя:</label>-->
-<!--    <input type="text" id="clientName" name="clientName">-->
-<!--    <br>-->
-<!--    <label for="clientPhoneNumber">Введите ваш номер телефона:</label>-->
-<!--    <input type="text" id="clientPhoneNumber" name="clientPhoneNumber">-->
-<!--    <br>-->
-<!--    <label for="dateTime">Выберите дату и время:</label>-->
-<!--    <input type="datetime-local" id="dateTime" name="dateTime">-->
-<!--    <br>-->
-<!--    <button type="submit">Записаться</button>-->
-<!--</form>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -39,15 +8,20 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
+            color: #4ca5cb;
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
+            background-image: url('/pic/c8d1d8b4a9844e30949d45359771964e.jpeg');">
+        background-size: cover; /* Растянуть изображение на всю область */
+            background-position: center; /* Выравнивание изображения по центру */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            height: 100vh; /* Высота равная высоте окна браузера */
+            margin: 0; /* Убрать отступы по умолчанию */
+            padding: 0; /* Убрать внутренние отступы по умолчанию */
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #ece5e5;
         }
 
         form {
@@ -70,7 +44,7 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #12daa6;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -80,7 +54,7 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #1155e7;
         }
 
     </style>
