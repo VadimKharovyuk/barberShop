@@ -1,20 +1,8 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Appointment Form</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>Запись к барберу</h1>-->
+
+
+
 <!--<form action="/appointments" method="post">-->
-<!--    <label for="barberId">Выберите барбера:</label>-->
-<!--    <select name="barberId" id="barberId">-->
-<!--        <option value="">Выберите барбера</option>-->
-<!--        &lt;!&ndash; Перебираем список барберов &ndash;&gt;-->
-<!--        <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>-->
-<!--    </select>-->
-<!--    <br>-->
+<!--    &lt;!&ndash; Добавляем выпадающий список для выбора услуги &ndash;&gt;-->
 <!--    <label for="treatmentId">Выберите услугу:</label>-->
 <!--    <select name="treatmentId" id="treatmentId">-->
 <!--        <option value="">Выберите услугу</option>-->
@@ -22,25 +10,83 @@
 <!--        <option th:each="treatment : ${treatments}" th:value="${treatment.id}" th:text="${treatment.name}"></option>-->
 <!--    </select>-->
 <!--    <br>-->
-<!--    <label for="clientId">Введите ваше имя:</label>-->
-<!--    <input type="text" id="clientId" name="clientId">-->
+<!--    &lt;!&ndash; Остальные поля формы &ndash;&gt;-->
+<!--    <label for="barberId">Выберите барбера:</label>-->
+<!--    <select name="barberId" id="barberId">-->
+<!--        <option value="">Выберите барбера</option>-->
+<!--        &lt;!&ndash; Перебираем список барберов &ndash;&gt;-->
+<!--        <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>-->
+<!--    </select>-->
 <!--    <br>-->
-<!--    <label for="email">Введите вашу почту:</label>-->
-<!--    <input type="email" id="email" name="email">-->
+<!--    <label for="clientName">Введите ваше имя:</label>-->
+<!--    <input type="text" id="clientName" name="clientName">-->
 <!--    <br>-->
-<!--    <label for="phoneNumber">Введите ваш номер телефона:</label>-->
-<!--    <input type="tel" id="phoneNumber" name="phoneNumber">-->
+<!--    <label for="clientPhoneNumber">Введите ваш номер телефона:</label>-->
+<!--    <input type="text" id="clientPhoneNumber" name="clientPhoneNumber">-->
 <!--    <br>-->
-<!--    <label for="dateTime">Выберите время записи:</label>-->
+<!--    <label for="dateTime">Выберите дату и время:</label>-->
 <!--    <input type="datetime-local" id="dateTime" name="dateTime">-->
 <!--    <br>-->
 <!--    <button type="submit">Записаться</button>-->
 <!--</form>-->
-<!--</body>-->
-<!--</html>-->
 
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
 
+        h1 {
+            text-align: center;
+            color: #333;
+        }
 
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Запись к барберу</h1>
 <form action="/appointments" method="post">
     <!-- Добавляем выпадающий список для выбора услуги -->
     <label for="treatmentId">Выберите услугу:</label>
@@ -58,12 +104,16 @@
         <option th:each="barber : ${barbers}" th:value="${barber.id}" th:text="${barber.name}"></option>
     </select>
     <br>
-    <label for="clientId">Введите ваше имя:</label>
-    <input type="text" id="clientId" name="clientId">
+    <label for="clientName">Введите ваше имя:</label>
+    <input type="text" id="clientName" name="clientName">
+    <br>
+    <label for="clientPhoneNumber">Введите ваш номер телефона:</label>
+    <input type="text" id="clientPhoneNumber" name="clientPhoneNumber">
     <br>
     <label for="dateTime">Выберите дату и время:</label>
     <input type="datetime-local" id="dateTime" name="dateTime">
     <br>
     <button type="submit">Записаться</button>
 </form>
-
+</body>
+</html>

@@ -45,12 +45,13 @@ public class AppointmentController {
     }
 
     @PostMapping("/appointments")
-    public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime, Model model) {
+    public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime, @RequestParam String clientName, @RequestParam String clientPhoneNumber, Model model) {
         // Создаем запись клиента
-        appointmentService.createAppointment(barberId, treatmentId, dateTime);
+        appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber);
         // Здесь можно добавить логику для подтверждения записи
         return "redirect:/"; // Перенаправляем на главную страницу
     }
+
 
     @PostMapping("/appointments/delete/{id}")
     public String deleteAppointment(@PathVariable Long id) {

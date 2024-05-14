@@ -33,18 +33,20 @@ public class AppointmentService {
         return appointmentRepository.findById(id);
     }
 
-    public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime) {
+
+    public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime, String clientName, String clientPhoneNumber) {
         Barber barber = barberRepository.findById(barberId).orElseThrow(() -> new IllegalArgumentException("Invalid barber ID"));
         Treatment treatment = treatmentRepository.findById(treatmentId).orElseThrow(() -> new IllegalArgumentException("Invalid treatment ID"));
 
         Appointment appointment = new Appointment();
         appointment.setBarber(barber);
         appointment.setTreatment(treatment);
-        appointment.setDateTime(dateTime); // Устанавливаем переданное время
+        appointment.setDateTime(dateTime);
+        appointment.setClientName(clientName);
+        appointment.setClientPhoneNumber(clientPhoneNumber);
 
         appointmentRepository.save(appointment);
     }
-
 
 
 

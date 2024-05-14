@@ -56,7 +56,8 @@
             <p th:text="${barber.specialization}" style="color: #eaf0f3">Специализация: Стрижка</p>
             <p th:text="${barber.schedule}" style="color: #e2e8e7">Расписание: Пн-Пт: 9:00-18:00, Сб-Вс: выходной</p>
             <!-- Ссылка на страницу барбера -->
-            <a th:href="@{'/barbers/' + ${barber.id}}" style="color: #eee6e6">Подробнее</a>
+            <a th:href="@{'/barbers/' + ${barber.id}}" style="color: #eee6e6">Подробнее</a> <br><br>
+            <a th:href="@{/appointments/create}" style="color: #4ca5cb">Записаться</a>
         </div>
     </div>
 </div>

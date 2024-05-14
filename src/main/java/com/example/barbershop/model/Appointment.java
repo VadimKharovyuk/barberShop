@@ -22,10 +22,6 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "client_id", nullable = false)
-//    private Client client;
-
     @ManyToOne
     @JoinColumn(name = "treatment_id", nullable = false)
     private Treatment treatment;
@@ -35,6 +31,12 @@ public class Appointment {
     private Barber barber;
 
     private LocalDateTime dateTime;
+
+    @Column(nullable = false)
+    private String clientName;
+
+    @Column(nullable = false)
+    private String clientPhoneNumber;
 
     // Конструкторы, геттеры и сеттеры
 }
