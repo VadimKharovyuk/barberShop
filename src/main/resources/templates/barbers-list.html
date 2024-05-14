@@ -43,8 +43,39 @@
             text-align: center;
             color: #eee6e6;
         }
+        /* Пример стилей для навигации */
+        nav {
+            /* Ваши стили для навигации */
+            text-align: center;
+            background-color: #000000; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры у списка */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline; /* Выводим элементы в одну линию */
+            margin-right: 20px; /* Внешний отступ между элементами */
+        }
+
+        nav ul li a {
+            color: white; /* Цвет ссылок */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            font-weight: bold; /* Жирный шрифт */
+        }
     </style>
 </head>
+<nav>
+    <ul>
+        <li><a href="/">Домой</a></li>
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/barbers">Наши barbers</a></li>
+        <li><a href="/appointments/create">Записаться </a></li>
+    </ul>
+</nav>
 <body style="background-image: url('/pic/Default_barbershop_modern_style_3.jpg');">
 <h1 class="mainH1">"Ваш стиль - наше искусство."</h1>
 <div class="card-list">

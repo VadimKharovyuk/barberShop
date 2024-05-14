@@ -3,11 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Barber Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #4ca5cb;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .barber-info {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .barber-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        /* Пример стилей для навигации */
+        nav {
+            /* Ваши стили для навигации */
+            text-align: center;
+            background-color: #000000; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры у списка */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline; /* Выводим элементы в одну линию */
+            margin-right: 20px; /* Внешний отступ между элементами */
+        }
+
+        nav ul li a {
+            color: white; /* Цвет ссылок */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            font-weight: bold; /* Жирный шрифт */
+        }
+    </style>
 </head>
+<nav>
+    <ul>
+        <li><a href="/">Домой</a></li>
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/barbers">Наши barbers</a></li>
+        <li><a href="/appointments/create">Записаться </a></li>
+    </ul>
+</nav>
 <body>
-<h1 th:text="${barber.name}"></h1>
-<p th:text="${barber.specialization}"></p>
-<p th:text="${barber.schedule}"></p>
-<img th:src="@{'/pic/' + ${barber.image}}" alt="Barber Image">
+<div class="barber-info">
+    <h1 th:text="${barber.name}"></h1>
+    <p th:text="${barber.specialization}"></p>
+    <p th:text="${barber.schedule}"></p>
+<!--    <p>Рейтинг: <span th:text="${barber.rating}"></span></p>-->
+<!--    <p>Опыт работы: <span th:text="${barber.experience}"></span></p>-->
+<!--    <p>Цена за услугу: <span th:text="${barber.price}"></span></p>-->
+    <img class="barber-image" th:src="@{'/pic/' + ${barber.image}}" alt="Barber Image">
+</div>
 </body>
 </html>
