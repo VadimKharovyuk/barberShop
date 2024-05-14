@@ -2,7 +2,6 @@ package com.example.barbershop.service;
 
 import com.example.barbershop.model.Appointment;
 import com.example.barbershop.model.Barber;
-import com.example.barbershop.model.Client;
 import com.example.barbershop.model.Treatment;
 import com.example.barbershop.repository.AppointmentRepository;
 import com.example.barbershop.repository.BarberRepository;
@@ -34,15 +33,19 @@ public class AppointmentService {
         return appointmentRepository.findById(id);
     }
 
-    public void createAppointment(Long barberId) {
+    public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime) {
         Barber barber = barberRepository.findById(barberId).orElseThrow(() -> new IllegalArgumentException("Invalid barber ID"));
+        Treatment treatment = treatmentRepository.findById(treatmentId).orElseThrow(() -> new IllegalArgumentException("Invalid treatment ID"));
 
         Appointment appointment = new Appointment();
         appointment.setBarber(barber);
-        appointment.setDateTime(LocalDateTime.now()); // Устанавливаем текущее время
+        appointment.setTreatment(treatment);
+        appointment.setDateTime(dateTime); // Устанавливаем переданное время
 
         appointmentRepository.save(appointment);
     }
+
+
 
 
 

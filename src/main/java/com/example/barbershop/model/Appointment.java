@@ -22,9 +22,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+//    @ManyToOne
+//    @JoinColumn(name = "client_id", nullable = false)
+//    private Client client;
 
     @ManyToOne
     @JoinColumn(name = "treatment_id", nullable = false)
