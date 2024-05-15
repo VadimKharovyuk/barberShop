@@ -63,13 +63,9 @@ public class AppointmentController {
                     "С уважением,\n" +
                     "Команда салона красоты";
             emailService.sendEmail(clientEmail, "Подтверждение записи", confirmationMessage);
-
-
-            // Pass the trimmed email address to the appointment service for creating appointments
             appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber,clientEmail);
 
-            // If the record is successfully created, redirect to the success page
-            return "redirect:/";
+            return "redirect:/barbers";
         } catch (IllegalArgumentException e) {
             // Handle the exception
             model.addAttribute("error", e.getMessage()); // Add error message to the model
