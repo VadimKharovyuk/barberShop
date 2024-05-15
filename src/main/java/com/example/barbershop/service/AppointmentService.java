@@ -53,6 +53,7 @@ public class AppointmentService {
         appointmentRepository.save(appointment);
     }
 
+
     private boolean isAppointmentAvailable(Long barberId, LocalDateTime dateTime) {
         // Проверяем, есть ли уже запись для выбранного барбера в указанное время
         return appointmentRepository.countByBarberIdAndDateTime(barberId, dateTime) == 0;

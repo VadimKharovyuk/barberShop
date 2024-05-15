@@ -4,6 +4,7 @@ import com.example.barbershop.model.Barber;
 import com.example.barbershop.model.Treatment;
 import com.example.barbershop.service.AppointmentService;
 import com.example.barbershop.service.BarberService;
+import com.example.barbershop.service.EmailService;
 import com.example.barbershop.service.TreatmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -62,7 +64,12 @@ public class AppointmentController {
 
 
 
-        @PostMapping("/appointments/delete/{id}")
+
+
+
+
+
+    @PostMapping("/appointments/delete/{id}")
     public String deleteAppointment(@PathVariable Long id) {
         // Удаляем запись по ее id
         appointmentService.deleteAppointmentById(id);
