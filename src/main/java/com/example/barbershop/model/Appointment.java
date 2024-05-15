@@ -38,6 +38,8 @@ public class Appointment {
     @Column(nullable = false)
     private String clientPhoneNumber;
 
+    private String emailClient;
+
     // Конструкторы, геттеры и сеттеры
 }
 

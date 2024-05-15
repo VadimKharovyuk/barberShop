@@ -34,7 +34,7 @@ public class AppointmentService {
     }
 
 
-    public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime, String clientName, String clientPhoneNumber) {
+    public void createAppointment(Long barberId, Long treatmentId, LocalDateTime dateTime, String clientName, String clientPhoneNumber, String clientEmail) {
         // Проверяем, свободно ли указанное время для записи у выбранного барбера
         if (!isAppointmentAvailable(barberId, dateTime)) {
             throw new IllegalArgumentException("Appointment time is not available for the selected barber.");
@@ -49,6 +49,7 @@ public class AppointmentService {
         appointment.setDateTime(dateTime);
         appointment.setClientName(clientName);
         appointment.setClientPhoneNumber(clientPhoneNumber);
+        appointment.setEmailClient(clientEmail);
 
         appointmentRepository.save(appointment);
     }

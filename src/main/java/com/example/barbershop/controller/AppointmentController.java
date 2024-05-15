@@ -1,5 +1,6 @@
 package com.example.barbershop.controller;
 
+import com.example.barbershop.model.Appointment;
 import com.example.barbershop.model.Barber;
 import com.example.barbershop.model.Treatment;
 import com.example.barbershop.service.AppointmentService;
@@ -9,6 +10,7 @@ import com.example.barbershop.service.TreatmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,7 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
     private final BarberService barberService;
     private final TreatmentService treatmentService;
+    private final  EmailService emailService;
 
 
 
@@ -50,17 +53,35 @@ public class AppointmentController {
     public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId,
                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime,
                                     @RequestParam String clientName, @RequestParam String clientPhoneNumber,
+                                    @RequestParam String clientEmail,
                                     Model model) {
         try {
-            appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber);
-            // Если запись успешно создана, перенаправляем на страницу успешного создания записи
-            return "redirect:/"; // Замените "success-page" на ваше представление
+
+            String confirmationMessage = "Уважаемый " + clientName + ",\n\n" +
+                    "Мы рады подтвердить вашу запись на " + dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy 'в' HH:mm")) + ".\n" +
+                    "Ожидаем вас и желаем приятного времяпровождения в нашем салоне!\n\n" +
+                    "С уважением,\n" +
+                    "Команда салона красоты";
+            emailService.sendEmail(clientEmail, "Подтверждение записи", confirmationMessage);
+
+
+            // Pass the trimmed email address to the appointment service for creating appointments
+            appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber,clientEmail);
+
+            // If the record is successfully created, redirect to the success page
+            return "redirect:/";
         } catch (IllegalArgumentException e) {
-            // Обработка исключения
-            model.addAttribute("error", e.getMessage()); // Передача сообщения об ошибке в модель
-            return "error-page"; // Возврат страницы с сообщением об ошибке
+            // Handle the exception
+            model.addAttribute("error", e.getMessage()); // Add error message to the model
+            return "error-page"; // Return the error page
         }
     }
+
+
+
+
+
+
 
 
 
