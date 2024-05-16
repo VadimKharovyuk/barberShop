@@ -67,8 +67,7 @@ public class AppointmentController {
 
             return "redirect:/barbers";
         } catch (IllegalArgumentException e) {
-            // Handle the exception
-            model.addAttribute("error", e.getMessage()); // Add error message to the model
+            model.addAttribute("error", e.getMessage());
             return "error-page"; // Return the error page
         }
     }

@@ -21,5 +21,8 @@ public class Treatment {
 
     private double price;
 
+
+    private String ImageURL;
+
 }
 

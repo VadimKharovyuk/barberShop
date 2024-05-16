@@ -5,7 +5,6 @@ import com.example.barbershop.model.Barber;
 import com.example.barbershop.model.Treatment;
 import com.example.barbershop.repository.AppointmentRepository;
 import com.example.barbershop.repository.BarberRepository;
-import com.example.barbershop.repository.ClientRepository;
 import com.example.barbershop.repository.TreatmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final BarberRepository barberRepository;
-    private final ClientRepository clientRepository;
     private final TreatmentRepository treatmentRepository;
 
 

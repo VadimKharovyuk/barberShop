@@ -71,6 +71,23 @@
             font-weight: bold; /* Жирный шрифт */
         }
 
+        .card {
+            color: #e7b896;
+            transition: transform 0.3s;
+            /* Добавляем свойство position: relative для .card, чтобы использовать его в качестве относительного контейнера для изображения */
+            position: relative;
+        }
+
+        .card img {
+            /* Задаем максимальную высоту изображения */
+            max-height: 100%;
+            /* Делаем изображение полностью заполняющим свой контейнер */
+            width: 100%;
+            /* Запрещаем изображению выходить за пределы своего контейнера */
+            object-fit: cover;
+        }
+
+
     </style>
 </head>
 <nav>
@@ -90,6 +107,7 @@
         <div class="col-md-4 mb-4" th:each="service : ${services}">
             <div class="card">
                 <div class="card-body">
+                    <img th:src="${service.imageURL}" alt="Treatment Image">
                     <h5 class="card-title" th:text="${service.name}">Название услуги</h5>
                     <p class="card-text" th:text="'Цена: $' + ${service.price}">Цена</p>
                     <a th:href="@{/appointments/create}" style="color: #4ca5cb">Записаться</a>
