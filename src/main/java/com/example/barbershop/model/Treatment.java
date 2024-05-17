@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -23,6 +25,11 @@ public class Treatment {
 
 
     private String ImageURL;
+
+
+//orphanRemoval = true. Это гарантирует, что при удалении записи из списка appointments в объекте Treatment, соответствующая запись в базе данных также будет удалена.
+    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments;
 
 }
 
