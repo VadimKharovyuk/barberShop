@@ -19,12 +19,12 @@
         }
 
         h1 {
-            color: #0a0a0a;
+            color: #0fa7e7;
             text-align: center;
         }
 
         .list-group-item {
-            background-color: #e8d5c5;
+
             border: none;
             border-bottom: 1px solid #dee2e6;
         }
@@ -60,7 +60,13 @@
             font-weight: bold; /* Жирный шрифт */
         }
         .small {
-            font-size: 17px; /* Установите желаемый размер текста */
+            font-size: 20px; /* Установите желаемый размер текста */
+        }
+        .container img {
+            height: 350px; /* Установка высоты изображения */
+        }
+        .mb-1{
+            color: #0ce08f;
         }
 
     </style>
@@ -81,8 +87,9 @@
             <ul class="list-group">
                 <!-- Перебор найденных услуг из модели -->
                 <li class="list-group-item" th:each="treatment : ${treatments}">
+                    <img th:src="${treatment.imageURL} " alt="Treatment Image">
                     <h5 class="mb-1 small" th:text="${treatment.name}">Название услуги</h5>
-                    <p class="mb-1 small" th:text="${treatment.price}">Цена</p>
+                    <p class="mb-1" th:text="${treatment.price}">Цена</p>
                 </li>
                 <!-- Если нет результатов поиска -->
                 <li class="list-group-item text-muted" th:if="${treatments.size() == 0}">Нет результатов поиска</li>
