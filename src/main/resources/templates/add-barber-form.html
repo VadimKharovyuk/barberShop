@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Barber</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-group{
+           color: #f1a680;
+        }
+        .main{
+
+            background-image: url('/pic/c8d1d8b4a9844e30949d45359771964e.jpeg'); /* Путь к изображению */
+            background-size: cover; /* Растянуть изображение на всю область */
+            background-position: center; /* Выравнивание изображения по центру */
+            background-repeat: no-repeat; /* Запретить повторение изображения */
+            height: 100vh; /* Высота равная высоте окна браузера */
+            margin: 0; /* Убрать отступы по умолчанию */
+            padding: 0; /* Убрать внутренние отступы по умолчанию */
+
+        }
+    </style>
 </head>
-<body>
+<body class="main">
 <div class="container mt-5">
-    <h2>Add New Barber</h2>
+    <h2 style="color: #9ea0cb">Add New Barber</h2>
     <form action="/barbers-add" method="post">
         <div class="form-group">
             <label for="name">Name:</label>
