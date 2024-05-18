@@ -58,7 +58,7 @@
         }
 
         section p {
-            color: #4ca5cb; /* Цвет текста */
+            color: #0ee3ea; /* Цвет текста */
         }
 
         /* Пример стилей для основного содержимого */
@@ -78,10 +78,7 @@
             padding: 20px 0; /* Внутренние отступы */
             text-align: center; /* Выравнивание по центру */
         }
-        .search{
-            color: #f1a680;
-            text-align: center;
-        }
+
         .hederH1{
             text-align: center;
             color: darkorange;
@@ -170,6 +167,55 @@
             height: 400px; /* Высота карты */
             border-radius: 8px;
         }
+        .search {
+            text-align: center;
+            padding: 20px; /* Внутренние отступы */
+            border-radius: 10px; /* Скругление углов */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+        }
+
+        .search h1 {
+            font-size: 24px; /* Размер шрифта */
+            margin-bottom: 10px; /* Внешний отступ снизу */
+            color: #0a0a0a; /* Цвет текста */
+        }
+
+        .search form {
+            display: flex; /* Отображение элементов в строку */
+            align-items: center; /* Выравнивание по центру по вертикали */
+        }
+
+        .search label {
+            text-align: center;
+            margin-right: 120px; /* Внешний отступ справа */
+            font-size: 18px; /* Размер шрифта */
+            color: #e7dddd; /* Цвет текста */
+        }
+
+        .search input[type="text"] {
+            text-align: center;
+            padding: 10px; /* Внутренние отступы */
+            border: 1px solid #ccc; /* Граница */
+            border-radius: 5px; /* Скругление углов */
+            font-size: 16px; /* Размер шрифта */
+        }
+
+        .search button {
+            padding: 10px 20px; /* Внутренние отступы */
+            background-color: #25afd9; /* Цвет фона кнопки */
+            color: #fff; /* Цвет текста кнопки */
+            border: none; /* Убираем границу */
+            border-radius: 5px; /* Скругление углов */
+            cursor: pointer; /* Изменяем курсор при наведении */
+            font-size: 16px; /* Размер шрифта */
+        }
+
+        .search button:hover {
+            background-color: #45a049; /* Цвет фона кнопки при наведении */
+        }
+
+
+
 
     </style>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
@@ -194,7 +240,7 @@
         Наша команда всегда готова помочь и ответить на все вопросы.</p>
 </header>
 
-<div class="search">
+<div class="search" >
     <h1>Поиск услуги</h1>
     <form action="/search" method="get">
         <label for="serviceName">Введите название услуги:</label>
@@ -203,7 +249,7 @@
     </form>
 
 </div>
-<section id="advantages">
+<section id="advantages" >
     <h2 style="text-align: center" >Наши преимущества</h2>
     <p>Профессиональные мастера: Наши барберы - опытные специалисты своего дела. Они прошли обучение и имеют большой опыт работы, чтобы предоставить клиентам качественные услуги.<br>
 

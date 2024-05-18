@@ -24,7 +24,9 @@ public class BarberService {
         return barberRepository.findById(id);
     }
 
-
+    public void addBarber(Barber barber) {
+        barberRepository.save(barber);
+    }
 
 
     // Другие методы, если необходимо
