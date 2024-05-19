@@ -1,5 +1,7 @@
 package com.example.barbershop.controller;
 
+import com.example.barbershop.config.EmailMessage;
+import com.example.barbershop.config.RabbitMQConfig;
 import com.example.barbershop.model.Appointment;
 import com.example.barbershop.model.Barber;
 import com.example.barbershop.model.Treatment;
@@ -8,6 +10,7 @@ import com.example.barbershop.service.BarberService;
 import com.example.barbershop.service.EmailService;
 import com.example.barbershop.service.TreatmentService;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.mail.SimpleMailMessage;
@@ -31,6 +34,7 @@ public class AppointmentController {
     private final BarberService barberService;
     private final TreatmentService treatmentService;
     private final  EmailService emailService;
+    private  final RabbitTemplate rabbitTemplate;
 
 
 
@@ -56,14 +60,19 @@ public class AppointmentController {
                                     @RequestParam String clientEmail,
                                     Model model) {
         try {
+            EmailMessage emailMessage = new EmailMessage();
+            emailMessage.setBarberId(barberId);
+            emailMessage.setTreatmentId(treatmentId);
+            emailMessage.setDateTime(dateTime);
+            emailMessage.setClientName(clientName);
+            emailMessage.setClientPhoneNumber(clientPhoneNumber);
+            emailMessage.setClientEmail(clientEmail);
 
-            String confirmationMessage = "Уважаемый " + clientName + ",\n\n" +
-                    "Мы рады подтвердить вашу запись на " + dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy 'в' HH:mm")) + ".\n" +
-                    "Ожидаем вас и желаем приятного времяпровождения в нашем салоне!\n\n" +
-                    "С уважением,\n" +
-                    "Команда салона красоты";
-            emailService.sendEmail(clientEmail, "Подтверждение записи", confirmationMessage);
-            appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber,clientEmail);
+            // Отправляем сообщение в очередь
+            rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, emailMessage);
+
+            // Создаем запись в базе данных
+            appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber, clientEmail);
 
             return "redirect:/barbers";
         } catch (IllegalArgumentException e) {
@@ -71,6 +80,7 @@ public class AppointmentController {
             return "error-page"; // Return the error page
         }
     }
+
 
 
 
