@@ -1,11 +1,12 @@
 package com.example.barbershop.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "barbers")
-public class Barber {
+public class Barber implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,4 @@ public class Barber {
 
     @Column(name = "image")
     private String image; // Путь к изображению мастера
-
-
 }
-

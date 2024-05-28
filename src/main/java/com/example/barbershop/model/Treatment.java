@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "services")
-public class Treatment {
+public class Treatment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

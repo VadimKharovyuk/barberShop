@@ -42,4 +42,3 @@ public class Appointment {
 
     // Конструкторы, геттеры и сеттеры
 }
-

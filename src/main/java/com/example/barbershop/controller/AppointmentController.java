@@ -85,16 +85,6 @@ public class AppointmentController {
 
 
 
-
-
-
-
-
-
-
-
-
-
     @PostMapping("/appointments/delete/{id}")
     public String deleteAppointment(@PathVariable Long id) {
         // Удаляем запись по ее id
@@ -103,4 +93,3 @@ public class AppointmentController {
         return "redirect:/appointments";
     }
 }
-

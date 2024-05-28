@@ -70,4 +70,3 @@ public class AppointmentService {
 
     // Другие методы, если необходимо
 }
-
