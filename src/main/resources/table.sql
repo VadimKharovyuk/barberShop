@@ -1,11 +1,3 @@
--- Создание таблицы "barbers"
-CREATE TABLE barbers (
-                         id INT AUTO_INCREMENT PRIMARY KEY,
-                         name VARCHAR(255) NOT NULL,
-                         specialization VARCHAR(255) NOT NULL,
-                         schedule VARCHAR(255) NOT NULL,
-                         image VARCHAR(255)
-);
 
 -- Вставка данных о барберах
 INSERT INTO barbers (name, specialization, schedule, image) VALUES
@@ -20,13 +12,6 @@ INSERT INTO barbers (name, specialization, schedule, image) VALUES
                                                                 ('David Garcia', 'Стрижка', 'Пн-Пт: 10:00-18:00, Сб: 9:00-15:00', 'david.jpg'),
                                                                 ('Emma Brown', 'Окраска волос', 'Пн-Сб: 9:00-17:00', 'emma.jpg');
 
-
--- Создание таблицы "services"
-CREATE TABLE services (
-                          id INT AUTO_INCREMENT PRIMARY KEY,
-                          name VARCHAR(255) NOT NULL,
-                          price DECIMAL(10, 2) NOT NULL
-);
 
 -- Вставка данных о услугах
 INSERT INTO services (name, price) VALUES

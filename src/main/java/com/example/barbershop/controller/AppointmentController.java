@@ -1,8 +1,6 @@
 package com.example.barbershop.controller;
-
 import com.example.barbershop.config.EmailMessage;
 import com.example.barbershop.config.RabbitMQConfig;
-import com.example.barbershop.model.Appointment;
 import com.example.barbershop.model.Barber;
 import com.example.barbershop.model.Treatment;
 import com.example.barbershop.service.AppointmentService;
@@ -11,18 +9,11 @@ import com.example.barbershop.service.EmailService;
 import com.example.barbershop.service.TreatmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -53,15 +44,16 @@ public class AppointmentController {
         return "appointment-form";
     }
 
+
     @PostMapping("/appointments")
-    public String createAppointment(@RequestParam Long barberId, @RequestParam Long treatmentId,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime,
-                                    @RequestParam String clientName, @RequestParam String clientPhoneNumber,
-                                    @RequestParam String clientEmail,
-                                    Model model) {
+    public String createAppointment( Model model, @RequestParam Long barberId ,@RequestParam Long treatmentId ,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime,
+            @RequestParam String clientName,
+            @RequestParam String clientPhoneNumber,
+            @RequestParam String clientEmail){
+
         try {
             EmailMessage emailMessage = new EmailMessage();
-            emailMessage.setBarberId(barberId);
             emailMessage.setTreatmentId(treatmentId);
             emailMessage.setDateTime(dateTime);
             emailMessage.setClientName(clientName);
@@ -69,7 +61,9 @@ public class AppointmentController {
             emailMessage.setClientEmail(clientEmail);
 
             // Отправляем сообщение в очередь
-            rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, emailMessage);
+            rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, "", emailMessage);
+
+            emailService.sendEmail(emailMessage);
 
             // Создаем запись в базе данных
             appointmentService.createAppointment(barberId, treatmentId, dateTime, clientName, clientPhoneNumber, clientEmail);
@@ -77,12 +71,10 @@ public class AppointmentController {
             return "redirect:/barbers";
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
-            return "error-page"; // Return the error page
+            return "error-page";
         }
+
     }
-
-
-
 
 
     @PostMapping("/appointments/delete/{id}")
